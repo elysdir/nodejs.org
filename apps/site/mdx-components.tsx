@@ -43,12 +43,11 @@ import WithReleaseSelect from '#site/components/withReleaseSelect';
 import WithSupporters from '#site/components/withSupporters';
 import { ReleaseProvider } from '#site/providers/releaseProvider';
 
-/**
- * A full list of React Components that we want to pass through to MDX
- *
- * @satisfies {import('mdx/types').MDXComponents}
- */
-export default {
+import MDXLayoutInjector from './components/MDX/LayoutInjector';
+
+export const useMDXComponents = () => ({
+  // WithLayout wrapper
+  MDXLayoutInjector,
   // HTML overrides
   a: Link,
   blockquote: Blockquote,
@@ -102,4 +101,4 @@ export default {
   Button,
   Link,
   LinkWithArrow,
-};
+});

@@ -110,10 +110,10 @@ export const InstallationMethodLabel: Record<InstallationMethod, string> = {
 
 ### 4. Create Installation Snippet
 
-Add installation instructions in `apps/site/snippets/en/download/`:
+Add installation instructions in `apps/site/snippets/[en]/download/`:
 
 ```bash
-# apps/site/snippets/en/download/exampleMethod.bash
+# apps/site/snippets/[en]/download/exampleMethod.bash
 # Install Node.js ${props.version} using Example Method
 curl -fsSL https://example.com/install.sh | bash -s -- ${props.version}
 

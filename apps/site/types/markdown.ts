@@ -1,4 +1,6 @@
 import type { Layouts } from './layouts';
+import type { Heading } from '@vcarl/remark-headings';
+import type { ReadTimeResults } from 'reading-time';
 
 // TODO(@avivkeller): BlogFrontmatter, LearnFrontmatter, etc
 export type Frontmatter = {
@@ -10,4 +12,13 @@ export type Frontmatter = {
   authors?: string;
   category?: string;
   description?: string;
+  canonical?: string;
+};
+
+export type MarkdownContext = {
+  frontmatter: Frontmatter;
+  headings: Array<Heading>;
+  pathname: string;
+  filename: string;
+  readingTime: ReadTimeResults;
 };

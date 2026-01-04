@@ -1,8 +1,9 @@
-import { availableLocales, defaultLocale } from '@node-core/website-i18n';
+import { availableLocales } from '@node-core/website-i18n';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import classNames from 'classnames';
 import { NextIntlClientProvider } from 'next-intl';
+import { getLocale } from 'next-intl/server';
 
 import BaseLayout from '#site/layouts/Base';
 import { VERCEL_ENV } from '#site/next.constants.mjs';
@@ -15,15 +16,10 @@ import '#site/styles/index.css';
 
 const fontClasses = classNames(IBM_PLEX_MONO.variable, OPEN_SANS.variable);
 
-type RootLayoutProps = PropsWithChildren<{
-  params: Promise<{ locale: string }>;
-}>;
+const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
+  const locale = await getLocale();
 
-const RootLayout: FC<RootLayoutProps> = async ({ children, params }) => {
-  const { locale } = await params;
-
-  const { langDir, hrefLang } =
-    availableLocales.find(l => l.code === locale) || defaultLocale;
+  const { langDir, hrefLang } = availableLocales.find(l => l.code === locale)!;
 
   return (
     <html
